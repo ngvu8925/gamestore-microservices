@@ -30,6 +30,19 @@ services:
     networks:
       - gamestore-network
 
+  order-service:
+    build: ./microservices/order-service
+    ports:
+      - "8083:8083"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
+    depends_on:
+      - discovery-server
+      - user-service
+      - product-service
+    networks:
+      - gamestore-network
+
   gateway-service:
     build: ./microservices/gateway-service
     ports:

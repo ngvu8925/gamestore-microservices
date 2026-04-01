@@ -64,6 +64,18 @@ public class ProductService {
         Product product = getProductById(id);
         productRepository.delete(product);
     }
+
+    /**
+     * GIÃ¡ÂºÂ¦M TÃ¡Â»Â’N KHO (PhÃ¡Â»Â¥c vÃ¡Â»Â¥ Order Service)
+     */
+    public void reduceStock(Long id, Integer quantity) {
+        Product product = getProductById(id);
+        if (product.getQuantity() < quantity) {
+            throw new RuntimeException("SÃ¡ÂºÂ£n phÃ¡ÂºÂ©m '" + product.getName() + "' khÃƒÂ´ng Ã„â€˜Ã¡Â»Â§ hàng tồn kho!");
+        }
+        product.setQuantity(product.getQuantity() - quantity);
+        productRepository.save(product);
+    }
 }
 
 

@@ -95,6 +95,24 @@ public class ProductController {
             );
         }
     }
+
+    /**
+     * GIÃ¡ÂºÂ¦M TÃ¡Â»Â’N KHO
+     * PUT /api/products/{id}/reduce-stock?quantity=2
+     */
+    @PutMapping("/{id}/reduce-stock")
+    public ResponseEntity<?> reduceStock(@PathVariable Long id, @RequestParam Integer quantity) {
+        try {
+            productService.reduceStock(id, quantity);
+            return ResponseEntity.ok(
+                    Map.of("message", "CÃ¡ÂºÂ-p nhÃ¡ÂºÂ-t tÃ¡Â»â€œn kho thÃƒÂ nh cÃƒÂ´ng!", "id", id)
+            );
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(
+                    Map.of("error", e.getMessage())
+            );
+        }
+    }
 }
 
 
