@@ -79,4 +79,4 @@ Dưới đây là chu kỳ hoạt động khép kín của hệ thống thông q
 3. Cuối cùng, bật **Gateway Service** (8080) làm lối vào duy nhất.
 
 ---
-*Dự án tâm huyết bởi [Tên của bạn] - 2026.*
+*Dự án tâm huyết bởi Nguyen Dang Vu - 2026.*
