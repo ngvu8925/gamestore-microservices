@@ -1,0 +1,27 @@
+# Build tools
+target/
+*.class
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# Runtime files
+*.log
+*.tmp
+*.temp
+
+# Environment / Secret
+.env
+secret-key.txt
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+!**/mvnw
+!**/mvnw.cmd

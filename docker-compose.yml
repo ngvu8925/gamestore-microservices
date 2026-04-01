@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  discovery-server:
+    build: ./microservices/discovery-server
+    ports:
+      - "8761:8761"
+    networks:
+      - gamestore-network
+
+  user-service:
+    build: ./microservices/user-service
+    ports:
+      - "8081:8081"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
+    depends_on:
+      - discovery-server
+    networks:
+      - gamestore-network
+
+  product-service:
+    build: ./microservices/product-service
+    ports:
+      - "8082:8082"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
+    depends_on:
+      - discovery-server
+    networks:
+      - gamestore-network
+
+  gateway-service:
+    build: ./microservices/gateway-service
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
+    depends_on:
+      - discovery-server
+      - user-service
+      - product-service
+    networks:
+      - gamestore-network
+
+networks:
+  gamestore-network:
+    driver: bridge
