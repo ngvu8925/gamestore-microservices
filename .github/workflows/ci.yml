@@ -26,14 +26,14 @@ jobs:
         cache: 'maven'
 
     - name: Build and Test ${{ matrix.service }}
-      working-directory: gamestore-server/microservices/${{ matrix.service }}
+      working-directory: microservices/${{ matrix.service }}
       run: ../../mvnw clean test
 
     - name: Generate JaCoCo Badge
       id: jacoco
       uses: cicirello/jacoco-badge-generator@v2
       with:
-        jacoco-csv-file: gamestore-server/microservices/${{ matrix.service }}/target/site/jacoco/jacoco.csv
+        jacoco-csv-file: microservices/${{ matrix.service }}/target/site/jacoco/jacoco.csv
         badges-directory: badges/${{ matrix.service }}
         generate-summary: true
 
@@ -63,5 +63,5 @@ jobs:
       uses: docker/setup-buildx-action@v2
 
     - name: Build Services via Docker Compose
-      working-directory: gamestore-server
+      working-directory: .
       run: docker compose build
