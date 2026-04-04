@@ -1,4 +1,4 @@
-version: '3.8'
+# Docker Compose Configuration for GameStore Microservices
 
 services:
   discovery-server:
