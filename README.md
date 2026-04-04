@@ -58,7 +58,23 @@ graph TD
 
 ## 📸 Demo & Screenshots
 
-Hệ thống đã được kiểm chứng hoạt động ổn định trên môi trường Docker:
+### 🛒 Quy trình nghiệp vụ thực tế (Business Flow)
+
+Dưới đây là chu kỳ hoạt động khép kín của hệ thống thông qua bộ lọc bảo mật của API Gateway:
+
+| BƯỚC 1: Đăng nhập nhận JWT | BƯỚC 2: Kiểm tra kho hàng |
+| :---: | :---: |
+| ![Login](./docs/screenshots/login.png) | ![Product Info](./docs/screenshots/product_list.png) |
+| *Xác thực danh tính qua User Service* | *Lấy thông tin hàng hóa hiện có* |
+
+| BƯỚC 3: Đặt hàng thông minh | BƯỚC 4: Đồng bộ kho tự động |
+| :---: | :---: |
+| ![Place Order](./docs/screenshots/order_success.png) | ![Stock Update](./docs/screenshots/inventory_sync.png) |
+| *Order Service kết nối Inter-service* | *Kho hàng tự giảm SAU KHI chốt đơn* |
+
+### 🐳 Triển khai thực tế trên Docker (Deployment Proof)
+
+Hệ thống đã được kiểm chứng hoạt động ổn định trên môi trường Docker Container:
 
 *   **Bảng điều khiển Eureka (Discovery Dashboard):** Toàn bộ các service đăng ký thành công (UP).  
     ![Eureka Dashboard](./docs/screenshots/eureka_status.png)
