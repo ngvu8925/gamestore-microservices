@@ -64,6 +64,22 @@ Dưới đây là chu kỳ hoạt động khép kín của hệ thống thông q
 | *Order Service kết nối Inter-service* | *Kho hàng tự giảm 1 SAU KHI chốt đơn* |
 
 ---
+## 📅 Lộ trình phát triển (Roadmap) - GameStore Microservices (cải thiện)
+
+### Tuần 1 - 2: Testing Phase
+- **Unit Test — UserService, ProductService**
+  - `@ExtendWith(MockitoExtension)` • mock Repository • test từng method
+- **Controller Test — @WebMvcTest + MockMvc**
+  - Test các endpoint API • mock JWT token • expect status 200/401/404
+- **Integration Test — OrderService (Feign mock)**
+  - `@SpringBootTest` • mock FeignClient • Testcontainers cho DB
+
+### Tuần 3: CI/CD & Deployment
+- **CI/CD — GitHub Actions**
+  - `Push -> mvn test -> JaCoCo report (70%+) -> Docker build`
+  - Thêm coverage badge vào README
+
+---
 ## 🚦 Cách chạy thử (Getting Started)
 
 ### 🐳 Cách 1: Sử dụng Docker (Nhanh nhất)

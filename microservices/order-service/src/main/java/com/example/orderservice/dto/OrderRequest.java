@@ -1,13 +1,27 @@
 package com.example.orderservice.dto;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.List;
 
 public class OrderRequest {
+
+    @NotNull(message = "userId không được null")
     private Long userId;
-    private List<OrderItemEntry> items;
+
+    @NotEmpty(message = "Danh sách items không được rỗng")
+    private List<@Valid OrderItemEntry> items;
 
     public static class OrderItemEntry {
+
+        @NotNull(message = "productId không được null")
         private Long productId;
+
+        @NotNull(message = "quantity không được null")
+        @Min(value = 1, message = "Quantity phải >= 1")
         private Integer quantity;
 
         public Long getProductId() { return productId; }

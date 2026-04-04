@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "*") // Cho phÃƒÂ©p frontend gÃ¡Â»Âi API (CORS)
+@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class UserController {
     }
 
     /**
-     * Ã„ÂÃ„â€šNG KÃƒÂ
+     * DANG KY
      * POST /api/users/register
      */
     @PostMapping("/register")
@@ -34,7 +34,7 @@ public class UserController {
             User user = userService.register(request);
             return ResponseEntity.status(HttpStatus.CREATED).body(
                     Map.of(
-                            "message", "Ã„ÂÃ„Æ’ng kÃƒÂ½ thÃƒÂ nh cÃƒÂ´ng!",
+                            "message", "Dang ky thanh cong!",
                             "userId", user.getId(),
                             "username", user.getUsername()
                     )
@@ -47,7 +47,7 @@ public class UserController {
     }
 
     /**
-     * Ã„ÂÃ„â€šNG NHÃ¡ÂºÂ¬P
+     * DANG NHAP
      * POST /api/users/login
      */
     @PostMapping("/login")
@@ -63,7 +63,7 @@ public class UserController {
     }
 
     /**
-     * LÃ¡ÂºÂ¤Y TÃ¡ÂºÂ¤T CÃ¡ÂºÂ¢ USERS
+     * LAY TAT CA USERS
      * GET /api/users
      */
     @GetMapping
@@ -72,7 +72,7 @@ public class UserController {
     }
 
     /**
-     * LÃ¡ÂºÂ¤Y USER THEO ID
+     * LAY USER THEO ID
      * GET /api/users/{id}
      */
     @GetMapping("/{id}")
@@ -87,5 +87,3 @@ public class UserController {
         }
     }
 }
-
-

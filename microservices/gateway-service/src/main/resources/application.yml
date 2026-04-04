@@ -9,21 +9,21 @@ spring:
       routes:
         # Đường dẫn cho User Service (Mở cửa tự do)
         - id: user-service
-          uri: http://localhost:8081
+          uri: lb://user-service
           predicates:
             - Path=/api/users/**
 
         # Đường dẫn cho Product Service (BẢO MẬT)
         - id: product-service
-          uri: http://localhost:8082
+          uri: lb://product-service
           predicates:
             - Path=/api/products/**
           filters:
             - AuthenticationFilter
 
-        # Đường dẫn cho Order Service (BẢO MẬT - MỚI)
+        # Đường dẫn cho Order Service (BẢO MẬT)
         - id: order-service
-          uri: http://localhost:8083
+          uri: lb://order-service
           predicates:
             - Path=/api/orders/**
           filters:
@@ -32,4 +32,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://discovery-server:8761/eureka/
+
+jwt:
+  secret: ${JWT_SECRET}
