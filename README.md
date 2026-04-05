@@ -9,33 +9,10 @@ Dự án này là một nền tảng Thương mại điện tử (E-commerce) ho
 
 ## 🏗️ Kiến trúc hệ thống (System Architecture)
 
-```mermaid
-graph TD
-    Client[Postman / Frontend] -->|API Request| Gateway[API Gateway - Port 8080]
-    Gateway -->|Security Filter| JWT[JWT Validator]
-    
-    subgraph Services
-        UserSvc[User Service - Port 8081]
-        ProdSvc[Product Service - Port 8082]
-        OrderSvc[Order Service - Port 8083]
-    end
-    
-    Gateway -->|Route| UserSvc
-    Gateway -->|Route| ProdSvc
-    Gateway -->|Route| OrderSvc
-    
-    OrderSvc -->|Verify User| UserSvc
-    OrderSvc -->|Fetch Price / Reduce Stock| ProdSvc
-    
-    UserSvc -.->|Register| Eureka[Discovery Server - Port 8761]
-    ProdSvc -.->|Register| Eureka
-    OrderSvc -.->|Register| Eureka
-    Gateway -.->|Fetch Routes| Eureka
-    
-    UserSvc --- DB[(SQL Server)]
-    ProdSvc --- DB
-    OrderSvc --- DB
-```
+![System Architecture](./docs/architecture.svg)
+
+Hệ thống được thiết kế theo mô hình Microservices hiện đại, tối ưu cho việc mở rộng và bảo mật. Toàn bộ các yêu cầu từ Client đều đi qua **API Gateway** để thực hiện xác thực JWT trước khi được điều phối đến các dịch vụ nội bộ.
+
 
 ## 🚀 Tính năng nổi bật (Key Features)
 
